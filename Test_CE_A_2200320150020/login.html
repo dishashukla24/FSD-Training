@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 180px;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+        .error {
+            color: red;
+            font-size: 0.8em;
+        }
+        .btn {
+            display: block;
+            width: 30%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn.reset {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="LoginForm" onsubmit="return validateForm()">
+        <label for="login">Login:</label>
+        <input type="text" id="login" name="name">
+        <div class="error" id="loginError"></div>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <div class="error" id="passwordError"></div>
+    
+        <button type="submit" class="btn">Submit</button>
+        <button type="reset" class="btn reset">Reset</button>
+
+       
+    </form>
+    
+    <script>
+        function validateForm() {
+            let valid = true;  
+            
+           
+            document.getElementById('loginError').innerHTML = '';
+            document.getElementById('passwordError').innerHTML = '';
+            
+           
+            let login = document.getElementById('login').value;
+            let loginPattern = /^[^ ]+\.[a-z]{2,3}$/;
+            if (login === '') {
+                document.getElementById('loginError').innerHTML = 'Login is required';
+                valid = false;
+            } else if (!loginPattern.test(login)) {
+                document.getElementById('loginError').innerHTML = 'Invalid loginID';
+                valid = false;
+            }
+            
+          
+            let password = document.getElementById('password').value;
+            if (password === '') {
+                document.getElementById('passwordError').innerHTML = 'Password is required';
+                valid = false;
+            } else if (password.length < 6) {
+                document.getElementById('passwordError').innerHTML = 'Password must be at least 6 characters';
+                valid = false;
+            }
+            
+            
+            if (valid) {
+                window.location.href = 'currencyconverter.html';  
+            }
+            
+            
+            return false;
+        }
+    </script>
+
+</body>
+</html>
